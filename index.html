@@ -36,12 +36,21 @@
             min-height: 100vh;
             height: 100%;
             display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            touch-action: manipulation;
+            margin: 0;
+        }
+        
+        .main-wrapper {
+            width: 100%;
+            display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            touch-action: manipulation;
-            margin: 0;
+            gap: 40px;
         }
 
         .coin-container {
@@ -49,7 +58,7 @@
             max-width: 400px;
             height: 80vw;
             max-height: 400px;
-            margin: 0 auto 60px auto;
+            margin: 0 auto;
             perspective: 1000px;
             cursor: pointer;
             opacity: 1;
@@ -208,6 +217,13 @@
             font-size: clamp(64px, 16vw, 96px);
             color: #3A3A3A;
         }
+        
+        @media (min-width: 768px) {
+            .coin-container {
+                width: 90vw;
+                height: 90vw;
+            }
+        }
     </style>
 </head>
 <body>
@@ -216,27 +232,29 @@
     <span class="icon-preload">raven</span>
     <span class="icon-preload">touch_app</span>
     
-    <div class="coin-container" id="coinContainer">
-        <div class="coin" id="coin">
-            <div class="coin-face coin-front">
-                <div class="coin-text" id="frontText"><span class="coin-icon-small">touch_app</span></div>
-            </div>
-            <div class="coin-face coin-back">
-                <div class="coin-text" id="backText"><span class="coin-icon-small">touch_app</span></div>
+    <div class="main-wrapper">
+        <div class="coin-container" id="coinContainer">
+            <div class="coin" id="coin">
+                <div class="coin-face coin-front">
+                    <div class="coin-text" id="frontText"><span class="coin-icon-small">touch_app</span></div>
+                </div>
+                <div class="coin-face coin-back">
+                    <div class="coin-text" id="backText"><span class="coin-icon-small">touch_app</span></div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="results-section">
-        <div class="results-container">
-            <div class="results-grid">
-                <div class="result-box">
-                    <div class="result-label">HEADS</div>
-                    <div class="result-count" id="headsCount">0</div>
-                </div>
-                <div class="result-box">
-                    <div class="result-label">TAILS</div>
-                    <div class="result-count" id="tailsCount">0</div>
+        <div class="results-section">
+            <div class="results-container">
+                <div class="results-grid">
+                    <div class="result-box">
+                        <div class="result-label">HEADS</div>
+                        <div class="result-count" id="headsCount">0</div>
+                    </div>
+                    <div class="result-box">
+                        <div class="result-label">TAILS</div>
+                        <div class="result-count" id="tailsCount">0</div>
+                    </div>
                 </div>
             </div>
         </div>
