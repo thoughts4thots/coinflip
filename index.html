@@ -2,9 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#5C724A">
     <title>Coin Flip</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,25 +27,21 @@
         html {
             height: 100%;
             overflow: hidden;
+            background-color: #5C724A;
         }
 
         body {
             font-family: 'Shadows Into Light Two', cursive;
             background-color: #5C724A;
-            background: radial-gradient(circle, transparent 20%, #5C724A 20%, #5C724A 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #5C724A 20%, #5C724A 80%, transparent 80%, transparent) 50px 50px, linear-gradient(#F5F5D5 4px, transparent 4px) 0 -2px, linear-gradient(90deg, #F5F5D5 4px, #5C724A 4px) -2px 0;
-            background-size: 100px 100px, 100px 100px, 50px 50px, 50px 50px;
-            background-attachment: fixed;
             min-height: 100vh;
-            min-height: 100dvh;
             height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            padding-top: max(20px, env(safe-area-inset-top));
-            padding-bottom: max(20px, env(safe-area-inset-bottom));
             touch-action: manipulation;
+            margin: 0;
         }
 
         .coin-container {
