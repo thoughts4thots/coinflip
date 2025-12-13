@@ -77,11 +77,85 @@
             height: 100%;
             position: relative;
             transform-style: preserve-3d;
-            transition: transform 3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: transform 3s ease-out;
         }
 
         .coin.flipping {
             animation: none;
+        }
+
+        .coin.wobbling {
+            animation: strongWobble 0.8s ease-in-out;
+        }
+
+        @keyframes strongWobble {
+            0% {
+                transform: rotateX(var(--final-rotation)) rotateZ(0deg) scale(1);
+            }
+            10% {
+                transform: rotateX(var(--final-rotation)) rotateZ(-5deg) scale(0.98);
+            }
+            20% {
+                transform: rotateX(var(--final-rotation)) rotateZ(5deg) scale(1.02);
+            }
+            30% {
+                transform: rotateX(var(--final-rotation)) rotateZ(-4deg) scale(0.99);
+            }
+            40% {
+                transform: rotateX(var(--final-rotation)) rotateZ(4deg) scale(1.01);
+            }
+            50% {
+                transform: rotateX(var(--final-rotation)) rotateZ(-3deg) scale(0.995);
+            }
+            60% {
+                transform: rotateX(var(--final-rotation)) rotateZ(3deg) scale(1.005);
+            }
+            70% {
+                transform: rotateX(var(--final-rotation)) rotateZ(-2deg) scale(1);
+            }
+            80% {
+                transform: rotateX(var(--final-rotation)) rotateZ(2deg) scale(1);
+            }
+            90% {
+                transform: rotateX(var(--final-rotation)) rotateZ(-1deg) scale(1);
+            }
+            100% {
+                transform: rotateX(var(--final-rotation)) rotateZ(0deg) scale(1);
+            }
+        }
+
+        /* Create the coin edge/rim with vertical reeding (like a quarter) */
+        .coin::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: 
+                /* Vertical ridges/reeding pattern */
+                repeating-linear-gradient(
+                    90deg,
+                    #6A6A6A 0px,
+                    #8A8A8A 1px,
+                    #9A9A9A 2px,
+                    #A8A8A8 3px,
+                    #9A9A9A 4px,
+                    #8A8A8A 5px,
+                    #7A7A7A 6px,
+                    #6A6A6A 7px,
+                    #7A7A7A 8px,
+                    #8A8A8A 9px,
+                    #9A9A9A 10px,
+                    #A8A8A8 11px,
+                    #9A9A9A 12px,
+                    #8A8A8A 13px,
+                    #7A7A7A 14px
+                );
+            transform: translateZ(-20px);
+            box-shadow: 
+                0 0 10px rgba(0, 0, 0, 0.5),
+                inset 0 2px 4px rgba(0, 0, 0, 0.3),
+                inset 0 -2px 4px rgba(255, 255, 255, 0.2);
         }
 
         .coin-face {
@@ -97,34 +171,110 @@
             text-align: center;
             padding: 40px;
             background: 
-                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8) 0%, transparent 50%),
-                radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.3) 0%, transparent 50%),
-                linear-gradient(135deg, #D4D4D4 0%, #F5F5F5 25%, #E8E8E8 50%, #C9C9C9 75%, #B8B8B8 100%);
+                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.4) 30%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.3) 0%, transparent 70%),
+                linear-gradient(135deg, 
+                    #C8C8C8 0%, 
+                    #FAFAFA 15%, 
+                    #D8D8D8 30%, 
+                    #FFFFFF 45%, 
+                    #E0E0E0 50%, 
+                    #C0C0C0 65%, 
+                    #E8E8E8 80%, 
+                    #B0B0B0 100%);
             box-shadow: 
-                0 10px 30px rgba(0,0,0,0.3),
-                inset 0 2px 4px rgba(255, 255, 255, 0.4),
-                inset 0 -2px 4px rgba(0, 0, 0, 0.2),
-                inset 0 0 0 4px #C0C0C0,
-                inset 0 0 0 8px #A8A8A8,
-                inset 0 0 0 12px #9A9A9A,
-                inset 0 0 0 13px #B8B8B8,
-                inset 0 0 0 14px #8A8A8A,
-                inset 0 0 0 15px #D0D0D0,
-                inset 0 0 0 16px #8A8A8A,
-                inset 0 0 0 17px #C0C0C0,
-                inset 0 0 0 18px #8A8A8A,
-                inset 0 0 0 19px #B8B8B8,
-                inset 0 0 0 20px #8A8A8A,
-                0 0 0 2px rgba(255, 255, 255, 0.3),
-                0 -2px 6px rgba(0, 0, 0, 0.4);
+                0 15px 40px rgba(0,0,0,0.4),
+                0 8px 20px rgba(0,0,0,0.3),
+                inset 0 3px 6px rgba(255, 255, 255, 0.6),
+                inset 0 -3px 6px rgba(0, 0, 0, 0.3),
+                inset 0 0 0 3px rgba(255, 255, 255, 0.4),
+                inset 0 0 0 4px #D0D0D0,
+                inset 0 0 0 8px #B8B8B8,
+                inset 0 0 0 9px #D8D8D8,
+                inset 0 0 0 12px #A0A0A0,
+                inset 0 0 0 13px #C8C8C8,
+                inset 0 0 0 15px #989898,
+                inset 0 0 0 16px #D0D0D0,
+                inset 0 0 0 18px #909090,
+                inset 0 0 0 19px #C0C0C0,
+                inset 0 0 0 20px #888888,
+                inset 0 0 0 21px #B8B8B8,
+                inset 0 0 0 22px #808080,
+                0 0 0 2px rgba(255, 255, 255, 0.4),
+                0 0 0 3px rgba(180, 180, 180, 0.6),
+                0 -3px 8px rgba(0, 0, 0, 0.5);
+            transform: translateZ(20px);
+        }
+
+        /* Add decorative circular grooves pattern */
+        .coin-face::after {
+            content: '';
+            position: absolute;
+            width: 85%;
+            height: 85%;
+            border-radius: 50%;
+            background: 
+                repeating-radial-gradient(
+                    circle at center,
+                    transparent 0%,
+                    transparent 2%,
+                    rgba(0, 0, 0, 0.05) 2.5%,
+                    transparent 3%,
+                    transparent 5%
+                ),
+                repeating-radial-gradient(
+                    circle at center,
+                    transparent 0%,
+                    rgba(255, 255, 255, 0.1) 1%,
+                    transparent 2%
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Add aged/worn texture overlay */
+        .coin-face::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-image:
+                /* Random wear spots */
+                radial-gradient(circle at 23% 45%, rgba(80, 80, 80, 0.15) 0%, transparent 3%),
+                radial-gradient(circle at 67% 28%, rgba(90, 90, 90, 0.12) 0%, transparent 4%),
+                radial-gradient(circle at 82% 71%, rgba(70, 70, 70, 0.18) 0%, transparent 2.5%),
+                radial-gradient(circle at 15% 78%, rgba(85, 85, 85, 0.14) 0%, transparent 3.5%),
+                radial-gradient(circle at 91% 34%, rgba(75, 75, 75, 0.16) 0%, transparent 2%),
+                radial-gradient(circle at 38% 89%, rgba(80, 80, 80, 0.13) 0%, transparent 4%),
+                radial-gradient(circle at 52% 12%, rgba(90, 90, 90, 0.11) 0%, transparent 3%),
+                radial-gradient(circle at 8% 52%, rgba(70, 70, 70, 0.17) 0%, transparent 2.5%),
+                radial-gradient(circle at 73% 85%, rgba(85, 85, 85, 0.15) 0%, transparent 3.5%),
+                radial-gradient(circle at 45% 63%, rgba(75, 75, 75, 0.12) 0%, transparent 2%),
+                /* Fine scratches - diagonal patterns */
+                linear-gradient(48deg, transparent 0%, transparent 48%, rgba(60, 60, 60, 0.08) 48.5%, transparent 49%),
+                linear-gradient(132deg, transparent 0%, transparent 31%, rgba(65, 65, 65, 0.09) 31.5%, transparent 32%),
+                linear-gradient(78deg, transparent 0%, transparent 67%, rgba(70, 70, 70, 0.07) 67.5%, transparent 68%),
+                linear-gradient(156deg, transparent 0%, transparent 83%, rgba(60, 60, 60, 0.08) 83.5%, transparent 84%),
+                linear-gradient(23deg, transparent 0%, transparent 19%, rgba(65, 65, 65, 0.06) 19.5%, transparent 20%),
+                /* Tarnish/oxidation spots */
+                radial-gradient(ellipse at 35% 25%, rgba(100, 100, 80, 0.08) 0%, transparent 15%),
+                radial-gradient(ellipse at 78% 65%, rgba(95, 95, 75, 0.09) 0%, transparent 18%),
+                radial-gradient(ellipse at 12% 88%, rgba(90, 90, 70, 0.07) 0%, transparent 12%),
+                /* Overall subtle aging */
+                radial-gradient(circle at 50% 50%, transparent 0%, rgba(80, 80, 80, 0.03) 100%);
+            pointer-events: none;
+            z-index: 3;
+            opacity: 0.7;
         }
 
         .coin-front {
-            transform: rotateY(0deg);
+            transform: rotateY(0deg) translateZ(20px);
         }
 
         .coin-back {
-            transform: rotateY(180deg) rotateZ(180deg);
+            transform: rotateY(180deg) rotateZ(180deg) translateZ(20px);
         }
 
         .coin-text {
@@ -132,23 +282,112 @@
             line-height: 1;
             word-wrap: break-word;
             font-family: 'Shadows Into Light Two', cursive;
+            position: relative;
+            z-index: 4;
         }
 
         .coin-icon {
             font-family: 'Material Symbols Outlined';
             font-size: clamp(190px, 47vw, 289px);
-            color: #4A4A4A;
+            color: #6A6A6A;
             line-height: 1;
             font-variation-settings:
             'FILL' 1,
             'wght' 400,
             'GRAD' 0,
             'opsz' 48;
+            /* Inset/engraved appearance - like stamped into metal */
             text-shadow: 
-                1px 1px 2px rgba(0, 0, 0, 0.3),
-                -1px -1px 2px rgba(255, 255, 255, 0.5),
-                2px 2px 4px rgba(0, 0, 0, 0.2);
-            filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.2));
+                1px 1px 1px rgba(0, 0, 0, 0.6),
+                -1px -1px 1px rgba(255, 255, 255, 0.4),
+                2px 2px 2px rgba(0, 0, 0, 0.4),
+                inset 0px 1px 2px rgba(0, 0, 0, 0.5);
+            filter: 
+                contrast(1.3)
+                brightness(0.75)
+                drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
+            /* Apply metallic gradient matching the coin */
+            background: 
+                /* Metallic shine variation */
+                radial-gradient(circle at 35% 35%, rgba(200, 200, 200, 0.6) 0%, transparent 40%),
+                radial-gradient(circle at 65% 65%, rgba(80, 80, 80, 0.5) 0%, transparent 40%),
+                /* Base metallic gradient matching coin */
+                linear-gradient(135deg, 
+                    rgba(150, 150, 150, 0.8) 0%,
+                    rgba(180, 180, 180, 0.6) 15%,
+                    rgba(130, 130, 130, 0.7) 30%,
+                    rgba(200, 200, 200, 0.5) 45%,
+                    rgba(140, 140, 140, 0.7) 50%,
+                    rgba(120, 120, 120, 0.8) 65%,
+                    rgba(170, 170, 170, 0.6) 80%,
+                    rgba(110, 110, 110, 0.8) 100%
+                );
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Wrap icon in a container for additional texture layers */
+        .coin-text {
+            color: #000;
+            line-height: 1;
+            word-wrap: break-word;
+            font-family: 'Shadows Into Light Two', cursive;
+            position: relative;
+            z-index: 4;
+        }
+        
+        /* Add aged/worn texture overlay specifically to icons */
+        .coin-text::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                /* Circular grooves on the icon area */
+                repeating-radial-gradient(
+                    circle at center,
+                    transparent 0%,
+                    transparent 8%,
+                    rgba(0, 0, 0, 0.04) 8.5%,
+                    transparent 9%,
+                    transparent 15%
+                ),
+                /* Random wear marks on icon */
+                radial-gradient(circle at 30% 35%, rgba(80, 80, 80, 0.2) 0%, transparent 10%),
+                radial-gradient(circle at 70% 60%, rgba(90, 90, 90, 0.15) 0%, transparent 12%),
+                radial-gradient(circle at 45% 75%, rgba(85, 85, 85, 0.18) 0%, transparent 8%),
+                radial-gradient(circle at 85% 30%, rgba(75, 75, 75, 0.16) 0%, transparent 9%),
+                radial-gradient(circle at 15% 80%, rgba(80, 80, 80, 0.14) 0%, transparent 11%),
+                /* Fine scratches across icon */
+                linear-gradient(42deg, transparent 0%, transparent 45%, rgba(60, 60, 60, 0.1) 45.5%, transparent 46%),
+                linear-gradient(128deg, transparent 0%, transparent 67%, rgba(65, 65, 65, 0.12) 67.5%, transparent 68%),
+                linear-gradient(85deg, transparent 0%, transparent 28%, rgba(70, 70, 70, 0.09) 28.5%, transparent 29%),
+                /* Tarnish spots */
+                radial-gradient(ellipse at 40% 30%, rgba(100, 100, 80, 0.12) 0%, transparent 20%),
+                radial-gradient(ellipse at 65% 70%, rgba(95, 95, 75, 0.14) 0%, transparent 25%);
+            pointer-events: none;
+            z-index: 5;
+            mix-blend-mode: multiply;
+            opacity: 0.6;
+        }
+        
+        /* Add additional depth layer */
+        .coin-text::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 60% 60%, rgba(0, 0, 0, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 6;
+            mix-blend-mode: overlay;
         }
 
         .coin-icon-small {
@@ -282,6 +521,9 @@
             
             isFlipping = true;
             
+            // Remove wobble class if it exists
+            coin.classList.remove('wobbling');
+            
             // Random result: 50/50 chance
             const result = Math.random() < 0.5 ? 'HEADS' : 'TAILS';
             
@@ -319,7 +561,17 @@
                     tailsCount++;
                     tailsCountEl.textContent = tailsCount;
                 }
-                isFlipping = false;
+                
+                // Add wobble effect after landing
+                coin.style.setProperty('--final-rotation', currentRotation + 'deg');
+                coin.classList.add('wobbling');
+                
+                // Remove wobbling class after animation completes
+                setTimeout(() => {
+                    coin.classList.remove('wobbling');
+                    isFlipping = false;
+                }, 800);
+                
             }, 3000);
         }
     </script>
