@@ -284,6 +284,22 @@
             font-family: 'Shadows Into Light Two', cursive;
             position: relative;
             z-index: 4;
+            display: inline-block;
+        }
+        
+        /* Apply breathing animation only to the icon span */
+        .coin-icon-small {
+            font-family: 'Material Symbols Outlined';
+            font-size: clamp(163px, 41vw, 272px);
+            color: #000;
+            line-height: 1;
+            font-variation-settings:
+            'FILL' 1,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 48;
+            display: inline-block;
+            animation: breathe 1.5s ease-in-out infinite;
         }
 
         .coin-icon {
@@ -400,6 +416,17 @@
             'wght' 400,
             'GRAD' 0,
             'opsz' 48;
+            display: inline-block;
+            animation: breathe 1.5s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% {
+                transform: scale(0.9);
+            }
+            50% {
+                transform: scale(1.1);
+            }
         }
 
         .results-section {
